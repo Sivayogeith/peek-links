@@ -41,7 +41,7 @@ class PeekLinks {
   }
 
   setInnerHTML(html) {
-    this.peekLinks.innerHTML = html;
+    this.peekLinks.textContent = html
   }
 
   setFlip(flip) {

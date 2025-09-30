@@ -5,7 +5,7 @@
   "description": "Adds preview to links on hover.",
   "permissions": ["storage"],
   "icons": {
-    "48": "src/assets/icon.png"
+    "819": "src/assets/icon.png"
   },
   "content_scripts": [
     {
@@ -17,5 +17,10 @@
     "default_icon": "src/assets/icon.png",
     "default_title": "Peek Links Settings",
     "default_popup": "src/settings.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@peek-links.sage"
+    }
   }
 }
