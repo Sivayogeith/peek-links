@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["PeekLinks.js", "main.js"]
+      "js": ["constants.js", "PeekLinks.js", "main.js"]
     }
   ],
   "browser_action": {

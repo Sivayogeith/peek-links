@@ -1,6 +1,4 @@
 class PeekLinks {
-  DEFAULT_BG = "lightblue";
-  DEFAULT_COLOR = "black";
   peekLinks = document.createElement("div");
 
   constructor() {
@@ -15,6 +13,10 @@ class PeekLinks {
 
   setColor(color) {
     this.peekLinks.style.color = color;
+  }
+
+  setFontSize(fontSize) {
+    this.peekLinks.style.fontSize = fontSize + 'px';
   }
 
   appendToBody() {

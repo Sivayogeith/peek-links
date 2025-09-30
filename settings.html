@@ -3,10 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @font-face {
+        font-family: "saira";
+        src: url("Saira-Regular.ttf");
+      }
+
+      body {
+        font-family: "saira", sans-serif;
+      }
+
+      button {
+        padding: 0.4rem 0.8rem;
+        background-color: #373737;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 15px;
+      }
+
+      button:hover {
+        background-color: #4a4a4a;
+      }
+    </style>
   </head>
   <body style="gap: 10px; display: flex; flex-direction: column">
-    <div>Background: <input type="text" id="background-input" /></div>
-    <div>Text Color: <input type="text" id="color-input" /></div>
+    <div class="browser-style">
+      background: <input type="text" id="background-input" />
+    </div>
+    <div class="browser-style">
+      text color: <input type="text" id="color-input" />
+    </div>
+    <div
+      class="browser-style"
+      style="display: flex; align-items: end; gap: 5px"
+    >
+      font size:
+      <input
+        type="range"
+        id="font-size-input"
+        name="font-size"
+        min="8"
+        max="20"
+        style="margin: 0"
+      />
+    </div>
+    <div
+      class="browser-style"
+      style="justify-content: center; display: flex; gap: 10px"
+    >
+      <button id="save">save</button>
+      <button id="reset">reset</button>
+    </div>
+    <script src="constants.js"></script>
     <script src="settings.js"></script>
   </body>
 </html>

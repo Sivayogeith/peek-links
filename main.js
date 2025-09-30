@@ -15,7 +15,7 @@ const peekLinks = new PeekLinks();
 
 const setBg = async (bg) => {
   if (!bg) {
-    bg = peekLinks.DEFAULT_BG;
+    bg = DEFAULT_BG;
     await browser.storage.local.set({
       bg: bg,
     });
@@ -25,7 +25,7 @@ const setBg = async (bg) => {
 
 const setColor = async (color) => {
   if (!color) {
-    color = peekLinks.DEFAULT_COLOR;
+    color = DEFAULT_COLOR;
     await browser.storage.local.set({
       color: color,
     });
@@ -33,10 +33,26 @@ const setColor = async (color) => {
   peekLinks.setColor(color);
 };
 
+const setFontSize = async (fontSize) => {
+  if (!fontSize) {
+    fontSize = DEFAULT_FONTSIZE;
+    await browser.storage.local.set({
+      fontSize: fontSize,
+    });
+  }
+  peekLinks.setFontSize(fontSize);
+};
+
 const onStorageChange = async (changes, area) => {
   if (area == "local") {
     if ("bg" in changes) setBg(changes.bg.newValue);
     if ("color" in changes) setColor(changes.color.newValue);
+    if ("fontSize" in changes) setFontSize(changes.fontSize.newValue);
+    if ("force" in changes) {
+      peekLinks.peekLinks.style.visibility = changes.force.newValue ? "visible" : "hidden"
+      peekLinks.setInnerHTML("Preview: This is what you see when you hover over a link.")
+    }
+      
   }
 };
 
@@ -71,6 +87,9 @@ const init = () => {
   browser.storage.local
     .get("color")
     .then(async (result) => setColor(result.color));
+  browser.storage.local
+    .get("fontSize")
+    .then(async (result) => setFontSize(result.fontSize));
 
   browser.storage.onChanged.addListener(onStorageChange);
 
