@@ -5,17 +5,17 @@
   "description": "Adds preview to links on hover.",
   "permissions": ["storage"],
   "icons": {
-    "48": "icon.png"
+    "48": "src/assets/icon.png"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["constants.js", "PeekLinks.js", "main.js"]
+      "js": ["src/constants.js", "src/PeekLinks.js", "src/main.js"]
     }
   ],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "src/assets/icon.png",
     "default_title": "Peek Links Settings",
-    "default_popup": "settings.html"
+    "default_popup": "src/settings.html"
   }
 }

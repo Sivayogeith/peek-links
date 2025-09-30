@@ -64,7 +64,7 @@ const init = () => {
     link.removeAttribute("href");
     link.addEventListener(
       "click",
-      () => (window.location.href = link.getAttribute("data-href"))
+      () => (window.open(link.getAttribute("data-href"), link.target ? link.target : "_self"))
     );
 
     link.onmouseenter = (ev) => onHoverLink(link, ev);
