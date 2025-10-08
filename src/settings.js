@@ -1,17 +1,17 @@
-const setBg = async (bg) => await browser.storage.local.set({ bg: bg });
+const setBg = async (bg) => await browser.storage.local.set({ bg });
 
 const setColor = async (color) => await browser.storage.local.set({ color });
 
 const setFontSize = async (fontSize) =>
   await browser.storage.local.set({ fontSize });
 
-const setFlip = async (flip) => await browser.storage.local.set({ flip });
+const setPosition = async (position) => await browser.storage.local.set({ position });
 
 const save = () => {
   setBg(bgInput.value);
   setColor(colorInput.value);
   setFontSize(fontSizeInput.value);
-  setFlip(flipInput.checked);
+  setPosition(positionInput.value);
 };
 
 const saveBtn = document.getElementById("save");
@@ -19,7 +19,7 @@ const resetBtn = document.getElementById("reset");
 const bgInput = document.getElementById("background-input");
 const colorInput = document.getElementById("color-input");
 const fontSizeInput = document.getElementById("font-size-input");
-const flipInput = document.getElementById("flip-input");
+const positionInput = document.getElementById("position-input");
 
 saveBtn.addEventListener("click", save);
 
@@ -27,7 +27,7 @@ resetBtn.addEventListener("click", () => {
   bgInput.value = DEFAULT_BG;
   colorInput.value = DEFAULT_COLOR;
   fontSizeInput.value = DEFAULT_FONTSIZE;
-  flipInput.checked = false;
+  positionInput.value = DEFAULT_POSITION;
   save();
 });
 
@@ -44,8 +44,8 @@ browser.storage.local
   .then((result) => (fontSizeInput.value = result.fontSize));
 
 browser.storage.local
-  .get("flip")
-  .then((result) => (flipInput.checked = result.flip));
+  .get("position")
+  .then((result) => (positionInput.value = result.position));
 
 window.onload = async () => {
   await browser.storage.local.set({

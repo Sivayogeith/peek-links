@@ -28,14 +28,14 @@
     </style>
   </head>
   <body style="gap: 10px; display: flex; flex-direction: column">
-    <div class="browser-style">
+    <div>
       background: <input type="text" id="background-input" />
     </div>
-    <div class="browser-style">
+    <div>
       text color: <input type="text" id="color-input" />
     </div>
     <div
-      class="browser-style"
+     
       style="display: flex; align-items: end; gap: 5px"
     >
       font size:
@@ -48,11 +48,19 @@
         style="margin: 0"
       />
     </div>
-    <div class="browser-style">
-      bottom right: <input type="checkbox" id="flip-input">
+    <div>
+      position: 
+      <select name="position" id="position-input" style="background-color: white; padding: 5px; border-radius: 10px; border: 1px gray solid;">
+        <option value="bottom-left" selected>bottom left</option>
+        <option value="bottom-center">bottom center</option>
+        <option value="bottom-right">bottom right</option>
+        <option value="top-left">top left</option>
+        <option value="top-center">top center</option>
+        <option value="top-right">top right</option>
+      </select>
     </div>
     <div
-      class="browser-style"
+     
       style="justify-content: center; display: flex; gap: 10px"
     >
       <button id="save">save</button>

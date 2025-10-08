@@ -24,12 +24,12 @@ const setFontSize = async (fontSize) => {
   peekLinks.setFontSize(fontSize);
 };
 
-const setFlip = async (flip) => {
-  if (flip == undefined) {
-    flip = false;
-    await browser.storage.local.set({ flip });
+const setPosition = async (position) => {
+  if (!position) {
+    position = DEFAULT_POSITION;
+    await browser.storage.local.set({ position });
   }
-  peekLinks.setFlip(flip);
+  peekLinks.setPosition(position);
 };
 
 const onStorageChange = async (changes, area) => {
@@ -37,7 +37,7 @@ const onStorageChange = async (changes, area) => {
     if ("bg" in changes) setBg(changes.bg.newValue);
     if ("color" in changes) setColor(changes.color.newValue);
     if ("fontSize" in changes) setFontSize(changes.fontSize.newValue);
-    if ("flip" in changes) setFlip(changes.flip.newValue);
+    if ("position" in changes) setPosition(changes.position.newValue);
     if ("force" in changes) {
       peekLinks.peekLinks.style.visibility = changes.force.newValue
         ? "visible"
@@ -80,8 +80,8 @@ const init = () => {
     .get("fontSize")
     .then(async (result) => setFontSize(result.fontSize));
   browser.storage.local
-    .get("flip")
-    .then(async (result) => setFlip(result.flip));
+    .get("position")
+    .then(async (result) => setPosition(result.position));
 
   browser.storage.onChanged.addListener(onStorageChange);
 

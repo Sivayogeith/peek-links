@@ -5,13 +5,10 @@ class PeekLinks {
     this.peekLinks.id = "peek-links";
     this.peekLinks.classList.add("peek-links");
     this.setStyles();
-    this.flipped = false;
   }
 
   setStyles() {
     this.peekLinks.style.visibility = "hidden";
-    this.peekLinks.style.bottom = "0px";
-    this.peekLinks.style.left = "0px";
     this.peekLinks.style.position = "fixed";
     this.peekLinks.style.padding = "0.4rem";
     this.peekLinks.style.paddingRight = "1rem";
@@ -41,27 +38,47 @@ class PeekLinks {
   }
 
   setInnerHTML(html) {
-    this.peekLinks.textContent = html
+    this.peekLinks.textContent = html;
   }
 
-  setFlip(flip) {
-    this.flipped = !flip;
-    if (!flip) {
-      this.peekLinks.style.removeProperty("right");
-
-      this.peekLinks.style.paddingRight = "1rem";
-      this.peekLinks.style.paddingLeft = "0.4rem";
-
-      this.peekLinks.style.left = "0px";
-      this.peekLinks.style.borderRadius = "0 20px 0 0";
+  setPosition(position) {
+    const splitPosition = position.split("-")
+    const isTop = splitPosition[0] == "top"
+    if (isTop) {
+      this.peekLinks.style.removeProperty("bottom");
+      this.peekLinks.style.top = "0px"
     } else {
-      this.peekLinks.style.removeProperty("left");
+      this.peekLinks.style.removeProperty("top");
+      this.peekLinks.style.bottom = "0px"
+    }
+    
+    this.peekLinks.style.removeProperty("left");
+    this.peekLinks.style.removeProperty("right");
+    this.peekLinks.style.removeProperty("transform");
+    
+    switch (splitPosition[1]) {
+      case "left": {
+        this.peekLinks.style.padding = "0 1rem 0 0.4rem"
+        this.peekLinks.style.borderRadius = isTop ? "0 0 20px 0" : "0 20px 0 0";
+        
+        this.peekLinks.style.left = "0px";
+        break;
+      }
+      case "center": {
+        this.peekLinks.style.padding = "0 1rem 0 1rem"
+        this.peekLinks.style.borderRadius = isTop ? "0 0 20px 20px" : "20px 20px 0 0";
 
-      this.peekLinks.style.paddingLeft = "1rem";
-      this.peekLinks.style.paddingRight = "0.4rem";
+        this.peekLinks.style.left = "50%";
+        this.peekLinks.style.transform = "translateX(-50%)";
+        break;
+      }
+      case "right": {
+        this.peekLinks.style.padding = "0 0.4rem 0 1rem"
+        this.peekLinks.style.borderRadius = isTop ? "0 0 0 20px" : "20px 0 0 0";
 
-      this.peekLinks.style.right = "0px";
-      this.peekLinks.style.borderRadius = "20px 0 0 0";
+        this.peekLinks.style.right = "0px";
+        break;
+      }
     }
   }
 }
