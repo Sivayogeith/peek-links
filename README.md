@@ -1,9 +1,9 @@
-# Peek Links Firefox Extension
+# Peek Links Chrome Extension
 This extension is adds better and customizable link preview then the default one.
-<img width="1920" height="1080" alt="Screenshot 2025-09-30 at 9 48 51 PM" src="https://github.com/user-attachments/assets/f4563eb2-d28b-4207-b575-250a1e40c91a" />
+<img width="1920" height="1080" alt="peeklinks-chrome" src="https://github.com/user-attachments/assets/fae48dbe-24a3-44bd-8c67-dc2b8f95dfc9" />
 
 ## Features 
 - Customizable **Font Size**
-- Customizable **Background**
-- Customizable **Text Color**
-- Customizable **Position** - Bottom Left / Right
+- Customizable **Background** - with color picker
+- Customizable **Text Color** - with color picker
+- Customizable **Position** - Top / Bottom and Left / Center / Right
