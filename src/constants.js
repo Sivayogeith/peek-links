@@ -1,4 +1,4 @@
-const DEFAULT_BG = "lightblue";
-const DEFAULT_COLOR = "black";
+const DEFAULT_BG = "#ADD8E6";
+const DEFAULT_COLOR = "#000";
 const DEFAULT_FONTSIZE = 14;
 const DEFAULT_POSITION = "bottom-left";
