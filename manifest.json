@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Peek Links",
   "version": "1.1",
   "description": "Adds preview to links on hover.",
@@ -13,7 +13,7 @@
       "js": ["src/browser-polyfill.js", "src/constants.js", "src/PeekLinks.js", "src/main.js"]
     }
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "src/assets/icon.png",
     "default_title": "Peek Links Settings",
     "default_popup": "src/settings.html"
