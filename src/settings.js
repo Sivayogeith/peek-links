@@ -1,11 +1,11 @@
-const setBg = async (bg) => await browser.storage.local.set({ bg });
+const setBg = async (bg) => await chrome.storage.local.set({ bg });
 
-const setColor = async (color) => await browser.storage.local.set({ color });
+const setColor = async (color) => await chrome.storage.local.set({ color });
 
 const setFontSize = async (fontSize) =>
-  await browser.storage.local.set({ fontSize });
+  await chrome.storage.local.set({ fontSize });
 
-const setPosition = async (position) => await browser.storage.local.set({ position });
+const setPosition = async (position) => await chrome.storage.local.set({ position });
 
 const save = () => {
   setBg(bgInput.value);
@@ -31,30 +31,26 @@ resetBtn.addEventListener("click", () => {
   save();
 });
 
-browser.storage.local
-  .get("bg")
-  .then((result) => (bgInput.value = result.bg));
+chrome.storage.local
+  .get("bg", (result) => (bgInput.value = result.bg));
 
-browser.storage.local
-  .get("color")
-  .then((result) => (colorInput.value = result.color));
+chrome.storage.local
+  .get("color", (result) => (colorInput.value = result.color));
 
-browser.storage.local
-  .get("fontSize")
-  .then((result) => (fontSizeInput.value = result.fontSize));
+chrome.storage.local
+  .get("fontSize", (result) => (fontSizeInput.value = result.fontSize));
 
-browser.storage.local
-  .get("position")
-  .then((result) => (positionInput.value = result.position));
+chrome.storage.local
+  .get("position", (result) => (positionInput.value = result.position));
 
 window.onload = async () => {
-  await browser.storage.local.set({
+  await chrome.storage.local.set({
     force: true,
   });
 };
 
 window.onblur = async () => {
-  await browser.storage.local.set({
+  await chrome.storage.local.set({
     force: false,
   });
 };

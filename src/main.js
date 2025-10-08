@@ -3,7 +3,7 @@ const peekLinks = new PeekLinks();
 const setBg = async (bg) => {
   if (!bg) {
     bg = DEFAULT_BG;
-    await browser.storage.local.set({ bg });
+    await chrome.storage.local.set({ bg });
   }
   peekLinks.setBg(bg);
 };
@@ -11,7 +11,7 @@ const setBg = async (bg) => {
 const setColor = async (color) => {
   if (!color) {
     color = DEFAULT_COLOR;
-    await browser.storage.local.set({ color });
+    await chrome.storage.local.set({ color });
   }
   peekLinks.setColor(color);
 };
@@ -19,7 +19,7 @@ const setColor = async (color) => {
 const setFontSize = async (fontSize) => {
   if (!fontSize) {
     fontSize = DEFAULT_FONTSIZE;
-    await browser.storage.local.set({ fontSize });
+    await chrome.storage.local.set({ fontSize });
   }
   peekLinks.setFontSize(fontSize);
 };
@@ -27,7 +27,7 @@ const setFontSize = async (fontSize) => {
 const setPosition = async (position) => {
   if (!position) {
     position = DEFAULT_POSITION;
-    await browser.storage.local.set({ position });
+    await chrome.storage.local.set({ position });
   }
   peekLinks.setPosition(position);
 };
@@ -62,9 +62,11 @@ const init = () => {
     // prevent default link preview
     link.setAttribute("data-href", link.href);
     link.removeAttribute("href");
-    link.addEventListener(
-      "click",
-      () => (window.open(link.getAttribute("data-href"), link.target ? link.target : "_self"))
+    link.addEventListener("click", () =>
+      window.open(
+        link.getAttribute("data-href"),
+        link.target ? link.target : "_self"
+      )
     );
 
     link.onmouseenter = (ev) => onHoverLink(link, ev);
@@ -72,18 +74,17 @@ const init = () => {
   }
 
   // storage stuff
-  browser.storage.local.get("bg").then(async (result) => setBg(result.bg));
-  browser.storage.local
-    .get("color")
-    .then(async (result) => setColor(result.color));
-  browser.storage.local
-    .get("fontSize")
-    .then(async (result) => setFontSize(result.fontSize));
-  browser.storage.local
-    .get("position")
-    .then(async (result) => setPosition(result.position));
+  chrome.storage.local.get("bg", (result) => setBg(result.bg));
 
-  browser.storage.onChanged.addListener(onStorageChange);
+  chrome.storage.local.get("color", (result) => setColor(result.color));
+  chrome.storage.local.get("fontSize", (result) =>
+    setFontSize(result.fontSize)
+  );
+  chrome.storage.local.get("position", (result) =>
+    setPosition(result.position)
+  );
+
+  chrome.storage.onChanged.addListener(onStorageChange);
 
   // append peeklinks to body
   peekLinks.appendToBody();
